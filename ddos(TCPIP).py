@@ -24,10 +24,17 @@ class main():
 
 	# นับ Packet ของ Data
 	send = 1
+    
+	try :
+		s.connect((target, port))
+	except socket.ConnectionRefusedError :
+		print("Can't connect to server")
+		s.close()
+		main()
 
 	# การทำงาน
 	while True:
-		s.send(data, (target, port))
+		s.send(data)
 
 		print("Sending ", send, "To", target, "with port", port)
 		send = send + 1
